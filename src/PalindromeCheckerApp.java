@@ -1,22 +1,23 @@
-    import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
     public class PalindromeCheckerApp
     {
     public static void main(String[] args)
     {
 
-                String str = "madam";
-                Stack<Character> stack = new Stack<>();
+                String str = "radar";
+                Deque<Character> deque = new LinkedList<>();
 
-                // Push characters into stack
+                // Insert characters into deque
                 for (int i = 0; i < str.length(); i++) {
-                    stack.push(str.charAt(i));
+                    deque.addLast(str.charAt(i));
                 }
 
                 boolean isPalindrome = true;
 
-                // Pop and compare
-                for (int i = 0; i < str.length(); i++) {
-                    if (str.charAt(i) != stack.pop()) {
+                // Compare front and rear characters
+                while (deque.size() > 1) {
+                    if (deque.removeFirst() != deque.removeLast()) {
                         isPalindrome = false;
                         break;
                     }
@@ -30,5 +31,6 @@
                 }
             }
         }
+
 
 
