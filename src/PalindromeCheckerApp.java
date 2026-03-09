@@ -1,75 +1,39 @@
-class Node {
-    char data;
-    Node next;
 
-    Node(char data) {
-        this.data = data;
-        this.next = null;
-    }
-}
     public class PalindromeCheckerApp
     {
-    public static void main(String[] args)
-    {
 
 
-                String str = "level";
 
-                // Convert string to linked list
-                Node head = null, tail = null;
-                for (int i = 0; i < str.length(); i++) {
-                    Node newNode = new Node(str.charAt(i));
-                    if (head == null) {
-                        head = newNode;
-                        tail = newNode;
-                    } else {
-                        tail.next = newNode;
-                        tail = newNode;
-                    }
+
+            // Recursive function
+            static boolean isPalindrome(String str, int start, int end) {
+
+                // Base condition
+                if (start >= end) {
+                    return true;
                 }
 
-                // Find middle using fast & slow pointers
-                Node slow = head;
-                Node fast = head;
-
-                while (fast != null && fast.next != null) {
-                    slow = slow.next;
-                    fast = fast.next.next;
+                // If characters don't match
+                if (str.charAt(start) != str.charAt(end)) {
+                    return false;
                 }
 
-                // Reverse second half
-                Node prev = null;
-                Node current = slow;
+                // Recursive call
+                return isPalindrome(str, start + 1, end - 1);
+            }
 
-                while (current != null) {
-                    Node next = current.next;
-                    current.next = prev;
-                    prev = current;
-                    current = next;
-                }
+            public static void main(String[] args) {
 
-                // Compare first half and reversed second half
-                Node first = head;
-                Node second = prev;
-                boolean isPalindrome = true;
+                String str = "madam";
 
-                while (second != null) {
-                    if (first.data != second.data) {
-                        isPalindrome = false;
-                        break;
-                    }
-                    first = first.next;
-                    second = second.next;
-                }
-
-                // Print result
-                if (isPalindrome) {
+                if (isPalindrome(str, 0, str.length() - 1)) {
                     System.out.println(str + " is a Palindrome");
                 } else {
                     System.out.println(str + " is not a Palindrome");
                 }
             }
         }
+
 
 
 
