@@ -2,20 +2,33 @@
     {
     public static void main(String[] args)
     {
-                // Original string
-                String original = "madam";
-                String reversed = "";
 
-                // Reverse the string using for loop
-                for (int i = original.length() - 1; i >= 0; i--) {
-                    reversed = reversed + original.charAt(i);
+
+                // Original string
+                String str = "radar";
+
+                // Convert string to character array
+                char[] arr = str.toCharArray();
+
+                int start = 0;
+                int end = arr.length - 1;
+                boolean isPalindrome = true;
+
+                // Two-pointer comparison
+                while (start < end) {
+                    if (arr[start] != arr[end]) {
+                        isPalindrome = false;
+                        break;
+                    }
+                    start++;
+                    end--;
                 }
 
-                // Compare original and reversed string
-                if (original.equals(reversed)) {
-                    System.out.println("The string \"" + original + "\" is a palindrome.");
+                // Display result
+                if (isPalindrome) {
+                    System.out.println(str + " is a Palindrome");
                 } else {
-                    System.out.println("The string \"" + original + "\" is not a palindrome.");
+                    System.out.println(str + " is not a Palindrome");
                 }
             }
         }
