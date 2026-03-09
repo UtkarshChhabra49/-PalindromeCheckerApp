@@ -3,36 +3,36 @@
     {
 
 
-
-
-            // Recursive function
-            static boolean isPalindrome(String str, int start, int end) {
-
-                // Base condition
-                if (start >= end) {
-                    return true;
-                }
-
-                // If characters don't match
-                if (str.charAt(start) != str.charAt(end)) {
-                    return false;
-                }
-
-                // Recursive call
-                return isPalindrome(str, start + 1, end - 1);
-            }
-
             public static void main(String[] args) {
 
-                String str = "madam";
+                String str = "Madam In Eden Im Adam";
 
-                if (isPalindrome(str, 0, str.length() - 1)) {
-                    System.out.println(str + " is a Palindrome");
+                // Normalize string: remove spaces and convert to lowercase
+                String normalized = str.replaceAll("\\s+", "").toLowerCase();
+
+                boolean isPalindrome = true;
+                int start = 0;
+                int end = normalized.length() - 1;
+
+                // Compare characters
+                while (start < end) {
+                    if (normalized.charAt(start) != normalized.charAt(end)) {
+                        isPalindrome = false;
+                        break;
+                    }
+                    start++;
+                    end--;
+                }
+
+                // Print result
+                if (isPalindrome) {
+                    System.out.println("\"" + str + "\" is a Palindrome");
                 } else {
-                    System.out.println(str + " is not a Palindrome");
+                    System.out.println("\"" + str + "\" is not a Palindrome");
                 }
             }
         }
+
 
 
 
