@@ -1,30 +1,28 @@
+    import java.util.Stack;
     public class PalindromeCheckerApp
     {
     public static void main(String[] args)
     {
 
+                String str = "madam";
+                Stack<Character> stack = new Stack<>();
 
-                // Original string
-                String str = "radar";
+                // Push characters into stack
+                for (int i = 0; i < str.length(); i++) {
+                    stack.push(str.charAt(i));
+                }
 
-                // Convert string to character array
-                char[] arr = str.toCharArray();
-
-                int start = 0;
-                int end = arr.length - 1;
                 boolean isPalindrome = true;
 
-                // Two-pointer comparison
-                while (start < end) {
-                    if (arr[start] != arr[end]) {
+                // Pop and compare
+                for (int i = 0; i < str.length(); i++) {
+                    if (str.charAt(i) != stack.pop()) {
                         isPalindrome = false;
                         break;
                     }
-                    start++;
-                    end--;
                 }
 
-                // Display result
+                // Print result
                 if (isPalindrome) {
                     System.out.println(str + " is a Palindrome");
                 } else {
@@ -32,4 +30,5 @@
                 }
             }
         }
+
 
