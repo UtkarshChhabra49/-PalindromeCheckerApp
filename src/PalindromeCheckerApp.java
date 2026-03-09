@@ -2,21 +2,20 @@
     {
     public static void main(String[] args)
     {
+                // Original string
+                String original = "madam";
+                String reversed = "";
 
-                // Hardcoded string
-                String str = "madam";
-                String reverse = "";
-
-                // Reverse the string
-                for(int i = str.length() - 1; i >= 0; i--) {
-                    reverse = reverse + str.charAt(i);
+                // Reverse the string using for loop
+                for (int i = original.length() - 1; i >= 0; i--) {
+                    reversed = reversed + original.charAt(i);
                 }
 
-                // Check palindrome using if-else
-                if(str.equals(reverse)) {
-                    System.out.println(str + " is a Palindrome");
+                // Compare original and reversed string
+                if (original.equals(reversed)) {
+                    System.out.println("The string \"" + original + "\" is a palindrome.");
                 } else {
-                    System.out.println(str + " is not a Palindrome");
+                    System.out.println("The string \"" + original + "\" is not a palindrome.");
                 }
             }
         }
