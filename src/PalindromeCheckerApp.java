@@ -1,15 +1,12 @@
-import java.util.Stack;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 // Strategy Interface
 interface PalindromeStrategy {
     boolean checkPalindrome(String str);
 }
 
-// Stack-based Strategy
+// Stack Strategy
 class StackStrategy implements PalindromeStrategy {
-
     public boolean checkPalindrome(String str) {
         Stack<Character> stack = new Stack<>();
 
@@ -26,9 +23,8 @@ class StackStrategy implements PalindromeStrategy {
     }
 }
 
-// Deque-based Strategy
+// Deque Strategy
 class DequeStrategy implements PalindromeStrategy {
-
     public boolean checkPalindrome(String str) {
         Deque<Character> deque = new LinkedList<>();
 
@@ -45,32 +41,39 @@ class DequeStrategy implements PalindromeStrategy {
     }
 }
 
-// Context Class
-class PalindromeCheckerApp {
-
-    private PalindromeStrategy strategy;
-
-    public void setStrategy(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean check(String str) {
-        return strategy.checkPalindrome(str);
-    }
-}
-
-// ✅ Main Class (FIXED)
+// Main Class (everything starts here)
 class Main {
+
     public static void main(String[] args) {
 
-        String word = "level";
+        String word = "racecar";
+        int iterations = 100000;
 
-        PalindromeCheckerApp checker = new PalindromeCheckerApp();
+        // Stack timing
+        PalindromeStrategy stack = new StackStrategy();
+        long start = System.nanoTime();
 
-        checker.setStrategy(new StackStrategy());
-        System.out.println("Using Stack: " + checker.check(word));
+        for (int i = 0; i < iterations; i++) {
+            stack.checkPalindrome(word);
+        }
 
-        checker.setStrategy(new DequeStrategy());
-        System.out.println("Using Deque: " + checker.check(word));
+        long end = System.nanoTime();
+        long stackTime = end - start;
+
+        // Deque timing
+        PalindromeStrategy deque = new DequeStrategy();
+        start = System.nanoTime();
+
+        for (int i = 0; i < iterations; i++) {
+            deque.checkPalindrome(word);
+        }
+
+        end = System.nanoTime();
+        long dequeTime = end - start;
+
+        // Output
+        System.out.println("Iterations: " + iterations);
+        System.out.println("Stack Time: " + stackTime + " ns");
+        System.out.println("Deque Time: " + dequeTime + " ns");
     }
 }
