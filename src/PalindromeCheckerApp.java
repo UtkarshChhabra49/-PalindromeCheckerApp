@@ -1,41 +1,38 @@
+public class PalindromeCheckerApp {
 
-    public class PalindromeCheckerApp
-    {
+    // Public method exposed to user
+    public boolean checkPalindrome(String str) {
 
+        // Convert string to char array (internal data structure)
+        char[] arr = str.toCharArray();
 
-            public static void main(String[] args) {
+        int start = 0;
+        int end = arr.length - 1;
 
-                String str = "Madam In Eden Im Adam";
-
-                // Normalize string: remove spaces and convert to lowercase
-                String normalized = str.replaceAll("\\s+", "").toLowerCase();
-
-                boolean isPalindrome = true;
-                int start = 0;
-                int end = normalized.length() - 1;
-
-                // Compare characters
-                while (start < end) {
-                    if (normalized.charAt(start) != normalized.charAt(end)) {
-                        isPalindrome = false;
-                        break;
-                    }
-                    start++;
-                    end--;
-                }
-
-                // Print result
-                if (isPalindrome) {
-                    System.out.println("\"" + str + "\" is a Palindrome");
-                } else {
-                    System.out.println("\"" + str + "\" is not a Palindrome");
-                }
+        // Two-pointer comparison
+        while (start < end) {
+            if (arr[start] != arr[end]) {
+                return false;
             }
+            start++;
+            end--;
         }
 
+        return true;
+    }
 
+    public static void main(String[] args) {
 
+        String word = "level";
 
+        // Create object
+        PalindromeCheckerApp checker = new PalindromeCheckerApp();
 
-
-
+        // Call method
+        if (checker.checkPalindrome(word)) {
+            System.out.println(word + " is a Palindrome");
+        } else {
+            System.out.println(word + " is not a Palindrome");
+        }
+    }
+}
